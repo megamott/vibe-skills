@@ -1,6 +1,5 @@
 ---
 name: skill-orchestrator
-model: claude-sonnet-4-6
 description: Используй в начале каждого разговора — устанавливает правило обязательной проверки скиллов перед ЛЮБЫМ действием, включая уточняющие вопросы
 ---
 
@@ -51,15 +50,15 @@ description: Используй в начале каждого разговор�
 ## Обязательный порядок работы над фичей
 
 ```
-brainstorming → [спек сохранён в docs/specs/] → writing-plans → executing-plans → unit-test-writer → code-review
+brainstorming → [спек сохранён в docs/specs/] → writing-plans → executing-plans (с вызовом скилла unit-test-writer для написания тестов и скилла code-review для ревью)
 ```
 
 <HARD-RULES>
 1. **Спек обязателен.** brainstorming ВСЕГДА завершается записью спека в `docs/specs/YYYY-MM-DD-<тема>-design.md` и одобрением пользователя. Переход к writing-plans без спека — запрещён.
 
-2. **Тесты — только через unit-test-writer в субагенте.** Никогда не пиши тесты вручную. После реализации кода вызывай скилл `unit-test-writer` через Agent tool (subagent_type не указывай — general-purpose справится). Передавай полный контекст: какой файл изменён, что нужно покрыть.
+2. **Тесты — только через unit-test-writer.** Никогда не пиши тесты вручную. После реализации кода вызывай скилл `unit-test-writer` через Agent tool (subagent_type не указывай — general-purpose справится). Передавай полный контекст: какой файл изменён, что нужно покрыть.
 
-3. **Ревью — только через code-review в субагенте.** После завершения реализации (включая тесты) вызывай скилл `code-review` через Agent tool. Субагент делает ревью независимо от тебя.
+3. **Ревью — только через code-review.** После завершения реализации (включая тесты) вызывай скилл `code-review` через Agent tool.
 
 4. **Порядок нарушать нельзя.** Нельзя пропускать шаги даже если задача кажется простой. Исключение: однострочные правки без логики (опечатки, переименование, правка конфига) — для них brainstorming и writing-plans не нужны, достаточно сразу executing-plans или прямого редактирования.
 </HARD-RULES>
@@ -72,9 +71,9 @@ brainstorming → [спек сохранён в docs/specs/] → writing-plans �
 2. **Потом скиллы реализации** (writing-plans, executing-plans, проектные скиллы) — направляют выполнение
 
 Примеры:
-- «Хочу добавить новый эндпоинт» → brainstorming → спек → writing-plans → executing-plans → unit-test-writer (субагент) → code-review (субагент)
+- «Хочу добавить новый эндпоинт» → brainstorming → спек → writing-plans → executing-plans (использует unit-test-writer + code-review)
 - «Это не работает» → systematic-debugging
-- «Напиши тесты для нового обработчика» → unit-test-writer (субагент)
+- «Напиши тесты для нового обработчика» → unit-test-writer
 
 ## Типы скиллов
 
