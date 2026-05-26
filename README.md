@@ -84,3 +84,17 @@ docs/specs/*.md   docs/plans/*.md                                          updat
 1. Заполни в `CLAUDE.md`: название проекта, стек, структуру кода и тестов.
 2. В `.claude/rules/example-*.md` оставь то, что применимо, остальное перепиши.
 3. Если в проекте есть специфика (например, инфраструктурный скилл для работы с конкретным сервисом) — добавь свой скилл в `skills/` и пропиши его в таблице `skill-orchestrator`.
+
+## Лицензия и происхождение проекта
+
+Этот проект основан на open-source проекте [obra/superpowers](https://github.com/obra/superpowers), распространяемом под лицензией MIT.
+
+Оригинальный проект:
+
+- Repository: https://github.com/obra/superpowers
+- License: MIT License
+- Copyright: Copyright (c) 2025 Jesse Vincent
+
+В этой версии выполнены перевод на русский язык, адаптация и дополнительные доработки.
+
+Проект распространяется под лицензией MIT. Подробности см. в файле [LICENSE](./LICENSE).
